@@ -1,5 +1,6 @@
 import {YMChat, YMChatEvents} from 'ymchat-react-native';
 
+let addedListener = false;
 const openYellowSDK = slugName => {
   YMChat.setBotId('...');
   YMChat.setCustomURL('https://r2.cloud.yellow.ai');
@@ -9,7 +10,7 @@ const openYellowSDK = slugName => {
   const userId = '...';
   YMChat.setAuthenticationToken(userId);
 
-  const payload = {
+  let payload = {
     name: 'Integration',
     type: 'react-native',
     flip_jwt_token: '...',
@@ -22,6 +23,8 @@ const openYellowSDK = slugName => {
     payload.JourneySlug = slugName;
   }
 
+  console.log('PAYLOAD: ', payload);
+
   YMChat.setPayload(payload);
 
   const messageListener = eventData => {
@@ -29,13 +32,16 @@ const openYellowSDK = slugName => {
     /** Check incoming eventData
      * as flag when zendesk webview timeout triggered */
     if (eventData?.code === 'reload-chatbot-widget') {
-      YMChat.closeBot();
-      openYellowSDK();
+      YMChat.reloadBot();
     }
   };
 
   setTimeout(() => {
-    YMChatEvents.addListener('YMChatEvent', messageListener);
+    if (!addedListener) {
+      YMChatEvents.addListener('YMChatEvent', messageListener);
+      addedListener = true;
+    }
+    // just invoke next tick
     setTimeout(() => {
       YMChat.startChatbot();
     });

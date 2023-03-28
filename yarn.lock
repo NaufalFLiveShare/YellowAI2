@@ -7040,10 +7040,10 @@ yargs@^17.3.1, yargs@^17.5.1:
     y18n "^5.0.5"
     yargs-parser "^21.1.1"
 
-ymchat-react-native@^2.3.0:
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/ymchat-react-native/-/ymchat-react-native-2.3.0.tgz#f52e6da5a98184f26bf04b62a09cd931bcc72087"
-  integrity sha512-IK+2qHDrkJuYUJVEmniO/db9/uNV307Fl53AxH2FYy8wEp9ufxNKj8A7LGzdPkf7x9xCsLeLRsXAxogHE67KAw==
+ymchat-react-native@2.4.0:
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/ymchat-react-native/-/ymchat-react-native-2.4.0.tgz#7e8b11bba6bfe767ac7c44d393ae262e6aae0dd7"
+  integrity sha512-A2MOI+P9Y5RLHJ0SbzcGRGi77xtLloFri64P9XN0nvGitr/uh4C5/2UsCVJRq8kcDfCvzXKwtai7BNRwRloDjQ==
 
 yocto-queue@^0.1.0:
   version "0.1.0"

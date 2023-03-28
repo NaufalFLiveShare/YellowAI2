@@ -64,12 +64,9 @@ function App(): JSX.Element {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
 
-  // const openAlert = () => {
-  //   Alert.alert('halo', 'hai');
-  // };
 
   const skipTimeout = () => {
-    openYellowSDK('closing-webview-by-event');
+    openYellowSDK('reroute-closing-webview-by-event_ljonbu');
   };
 
   return (
