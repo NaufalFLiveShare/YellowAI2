@@ -1,4 +1,6 @@
+import {NativeModules} from 'react-native';
 import {YMChat, YMChatEvents} from 'ymchat-react-native';
+const {OtherScreen} = NativeModules;
 
 let addedListener = false;
 const openYellowSDK = slugName => {
@@ -29,6 +31,9 @@ const openYellowSDK = slugName => {
 
   const messageListener = eventData => {
     console.log('event: ', eventData);
+    if (eventData.code === 'direct-to-other-page') {
+      OtherScreen.showOtherViewController();
+    }
     /** Check incoming eventData
      * as flag when zendesk webview timeout triggered */
     if (eventData?.code === 'reload-chatbot-widget') {

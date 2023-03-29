@@ -5,10 +5,10 @@
  * @format
  */
 
-import React from 'react';
-import type {PropsWithChildren} from 'react';
+import React, {useState} from 'react';
 import {
   Button,
+  NativeModules,
   SafeAreaView,
   ScrollView,
   StatusBar,
@@ -25,13 +25,11 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+
+const {OtherScreen} = NativeModules;
 import openYellowSDK from './startYMChat';
 
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
-
-function Section({children, title}: SectionProps): JSX.Element {
+function Section({children, title}) {
   const isDarkMode = useColorScheme() === 'dark';
   return (
     <View style={styles.sectionContainer}>
@@ -57,16 +55,23 @@ function Section({children, title}: SectionProps): JSX.Element {
   );
 }
 
-function App(): JSX.Element {
+function App() {
   const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
 
-
-  const skipTimeout = () => {
+  const openChatWithSkipTimeout = () => {
     openYellowSDK('reroute-closing-webview-by-event_ljonbu');
+  };
+
+  const openChat = () => {
+    openYellowSDK('reroute-closing-webview-by-event_ljonbu');
+  };
+
+  const showNativeScreen = () => {
+    OtherScreen.showOtherViewController();
   };
 
   return (
@@ -78,8 +83,9 @@ function App(): JSX.Element {
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
         style={backgroundStyle}>
-        <Button title="OPEN CHAT" onPress={() => openYellowSDK()} />
-        <Button title="SKIP TIMEOUT" onPress={skipTimeout} />
+        <Button title="OPEN CHAT" onPress={openChat} />
+        <Button title="SKIP TIMEOUT" onPress={openChatWithSkipTimeout} />
+        <Button title="Open Native Screen" onPress={showNativeScreen} />
         <Header />
         <View
           style={{
