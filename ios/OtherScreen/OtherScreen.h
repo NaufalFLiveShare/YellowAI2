@@ -5,8 +5,10 @@
 //  Created by FLP-9-MuhammadRabbani on 29/03/23.
 //
 
-#ifndef OtherScreen_h
-#define OtherScreen_h
+#import <React/RCTBridgeModule.h>
+#import <React/RCTEventEmitter.h>
+#import "ChatYellow-Bridging-Header.h"
 
+@interface OtherScreen : RCTEventEmitter <RCTBridgeModule>
 
-#endif /* OtherScreen_h */
+@end

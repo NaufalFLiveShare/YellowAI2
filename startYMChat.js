@@ -31,6 +31,10 @@ const openYellowSDK = slugName => {
 
   const messageListener = eventData => {
     console.log('event: ', eventData);
+    if (eventData.code === 'cta-clicked') {
+      OtherScreen.showOtherViewController();
+    }
+
     if (eventData.code === 'direct-to-other-page') {
       OtherScreen.showOtherViewController();
     }
