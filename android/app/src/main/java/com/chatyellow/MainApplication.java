@@ -1,13 +1,22 @@
 package com.chatyellow;
 
 import android.app.Application;
+
+import androidx.annotation.NonNull;
+
+import com.chatyellow.otherscreen.OtherScreenModule;
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
+import com.facebook.react.bridge.NativeModule;
+import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.defaults.DefaultNewArchitectureEntryPoint;
 import com.facebook.react.defaults.DefaultReactNativeHost;
+import com.facebook.react.uimanager.ViewManager;
 import com.facebook.soloader.SoLoader;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainApplication extends Application implements ReactApplication {
@@ -24,7 +33,21 @@ public class MainApplication extends Application implements ReactApplication {
           @SuppressWarnings("UnnecessaryLocalVariable")
           List<ReactPackage> packages = new PackageList(this).getPackages();
           // Packages that cannot be autolinked yet can be added manually here, for example:
-          // packages.add(new MyReactNativePackage());
+           packages.add(new ReactPackage() {
+               @NonNull
+               @Override
+               public List<NativeModule> createNativeModules(@NonNull ReactApplicationContext reactApplicationContext) {
+                   List<NativeModule> modules = new ArrayList<>();
+                   modules.add(new OtherScreenModule(reactApplicationContext));
+                   return modules;
+               }
+
+               @NonNull
+               @Override
+               public List<ViewManager> createViewManagers(@NonNull ReactApplicationContext reactApplicationContext) {
+                  return null;
+               }
+           });
           return packages;
         }
 

@@ -19,7 +19,7 @@ RCT_EXPORT_MODULE();
   return @[];
 }
 
-RCT_EXPORT_METHOD(showOtherViewController) {
+RCT_EXPORT_METHOD(showOtherScreen) {
     dispatch_async(dispatch_get_main_queue(), ^{
       UIViewController *rootViewController = [UIApplication sharedApplication].delegate.window.rootViewController;
       OtherViewController *otherViewController = [[OtherViewController alloc] init];

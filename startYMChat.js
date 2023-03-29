@@ -32,11 +32,11 @@ const openYellowSDK = slugName => {
   const messageListener = eventData => {
     console.log('event: ', eventData);
     if (eventData.code === 'cta-clicked') {
-      OtherScreen.showOtherViewController();
+      OtherScreen.showOtherScreen();
     }
 
     if (eventData.code === 'direct-to-other-page') {
-      OtherScreen.showOtherViewController();
+      OtherScreen.showOtherScreen();
     }
     /** Check incoming eventData
      * as flag when zendesk webview timeout triggered */

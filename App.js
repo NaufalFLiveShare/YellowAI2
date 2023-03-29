@@ -71,7 +71,7 @@ function App() {
   };
 
   const showNativeScreen = () => {
-    OtherScreen.showOtherViewController();
+    OtherScreen.showOtherScreen();
   };
 
   return (
