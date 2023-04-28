@@ -45,7 +45,8 @@ public class MainApplication extends Application implements ReactApplication {
                @NonNull
                @Override
                public List<ViewManager> createViewManagers(@NonNull ReactApplicationContext reactApplicationContext) {
-                  return null;
+                   List<ViewManager> modules = new ArrayList<>();
+                   return modules;
                }
            });
           return packages;
