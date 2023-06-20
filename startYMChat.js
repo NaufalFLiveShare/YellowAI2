@@ -4,19 +4,20 @@ const {OtherScreen} = NativeModules;
 
 let addedListener = false;
 const openYellowSDK = slugName => {
-  YMChat.setBotId('...');
+  YMChat.setBotId('x1670310721721');
   YMChat.setCustomURL('https://r2.cloud.yellow.ai');
   YMChat.setVersion(2);
   YMChat.setDisableActionsOnLoad(true);
 
-  const userId = '...';
+  const userId = '';
   YMChat.setAuthenticationToken(userId);
 
   let payload = {
     name: 'Integration',
     type: 'react-native',
-    flip_jwt_token: '...',
-    zendesk_jwt_token: '...',
+    flip_jwt_token: '',
+    zendesk_jwt_token: '',
+    timeout: 3600000,
     user_id_flip: userId,
   };
 

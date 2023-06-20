@@ -28,6 +28,7 @@ import {
 
 const {OtherScreen} = NativeModules;
 import openYellowSDK from './startYMChat';
+import startChatViaYellowSDK from './startYellowSDK';
 
 function Section({children, title}) {
   const isDarkMode = useColorScheme() === 'dark';
@@ -67,7 +68,8 @@ function App() {
   };
 
   const openChat = () => {
-    openYellowSDK('reroute-closing-webview-by-event_ljonbu');
+    // startChatViaYellowSDK();
+    openYellowSDK();
   };
 
   const showNativeScreen = () => {
