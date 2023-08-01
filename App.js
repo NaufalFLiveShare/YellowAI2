@@ -5,8 +5,9 @@
  * @format
  */
 
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
+  Alert,
   Button,
   NativeModules,
   SafeAreaView,
@@ -28,6 +29,8 @@ import {
 
 const {OtherScreen} = NativeModules;
 import openYellowSDK from './startYMChat';
+
+import messaging from '@react-native-firebase/messaging';
 
 function Section({children, title}) {
   const isDarkMode = useColorScheme() === 'dark';
@@ -67,12 +70,27 @@ function App() {
   };
 
   const openChat = () => {
-    openYellowSDK('reroute-closing-webview-by-event_ljonbu');
+    openYellowSDK();
   };
 
   const showNativeScreen = () => {
     OtherScreen.showOtherScreen();
   };
+
+  useEffect(() => {
+    messaging()
+      .getToken()
+      .then(res => {
+        console.log(res);
+      });
+
+    const unsubscribe = messaging().onMessage(async remoteMessage => {
+      console.log('background?', JSON.stringify(remoteMessage))
+      // Alert.alert('A new FCM message arrived!', JSON.stringify(remoteMessage));
+    });
+
+    return unsubscribe;
+  }, []);
 
   return (
     <SafeAreaView style={backgroundStyle}>
