@@ -1,16 +1,21 @@
 import {NativeModules} from 'react-native';
 import {YMChat, YMChatEvents} from 'ymchat-react-native';
+import messaging from '@react-native-firebase/messaging';
 const {OtherScreen} = NativeModules;
 
 let addedListener = false;
-const openYellowSDK = slugName => {
+const openYellowSDK = async slugName => {
   YMChat.setBotId('...');
   YMChat.setCustomURL('https://r2.cloud.yellow.ai');
   YMChat.setVersion(2);
   YMChat.setDisableActionsOnLoad(true);
 
   const userId = '...';
+
   YMChat.setAuthenticationToken(userId);
+
+  const deviceToken = await messaging().getToken();
+  YMChat.setDeviceToken(deviceToken);
 
   let payload = {
     name: 'Integration',
@@ -18,6 +23,7 @@ const openYellowSDK = slugName => {
     flip_jwt_token: '...',
     zendesk_jwt_token: '...',
     user_id_flip: userId,
+    user_email: '...',
   };
 
   console.log('slugName:', slugName);

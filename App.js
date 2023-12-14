@@ -5,9 +5,8 @@
  * @format
  */
 
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import {
-  Alert,
   Button,
   NativeModules,
   SafeAreaView,
@@ -78,14 +77,8 @@ function App() {
   };
 
   useEffect(() => {
-    messaging()
-      .getToken()
-      .then(res => {
-        console.log(res);
-      });
-
     const unsubscribe = messaging().onMessage(async remoteMessage => {
-      console.log('background?', JSON.stringify(remoteMessage))
+      console.log('Foreground', JSON.stringify(remoteMessage));
       // Alert.alert('A new FCM message arrived!', JSON.stringify(remoteMessage));
     });
 
